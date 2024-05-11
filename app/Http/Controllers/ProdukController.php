@@ -147,6 +147,26 @@ class ProdukController extends Controller
             return back()->with('error', 'Data failed to delete');
         }
     }
+
+    public function uploadimage(Request $request)
+    {
+        // dd($request->all());
+        $product_id = $request->produk_id;
+        $post = Produk::findOrFail($product_id);
+
+        $fileupload = $request->file('image');
+        $folder = 'assets/produk';
+        $user_id = auth()->user()->id;
+
+        $imageName = time().'.'.$fileupload->getClientOriginalExtension();
+        $fileupload->move(public_path($folder), $imageName);
+
+        $post->foto = $imageName;
+        $post->save();
+        
+        return back()->with('success', 'Image uploaded successfully');
+    }
+
     public function loadasync($id) {
         $itemproduk = Produk::findOrFail($id);
         $respon = [
