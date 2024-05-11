@@ -41,18 +41,19 @@ class SlideshowController extends Controller
         $this->validate($request, [
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        // ambil data user yang login
+        
         $itemuser = $request->user();
-        // masukkan data yang dikirim ke dalam variable $inputan
+    
+        $imageName = time().'.'.$request->file('image')->getClientOriginalExtension();
+        $folder = 'assets/slideshow';
+        $request->file('image')->move(public_path($folder), $imageName);
+    
         $inputan = $request->all();
         $inputan['user_id'] = $itemuser->id;
-        // ambil url foto yang diupload
-        $fileupload = $request->file('image');
-        $folder = 'assets/images';
-        $itemgambar = (new ImageController)->upload($fileupload, $itemuser, $folder);
-        // masukkan url yang telah diupload ke $inputan
-        $inputan['foto'] = $itemgambar->url;
+        $inputan['foto'] = $folder.'/'.$imageName;
+    
         $itemslideshow = Slideshow::create($inputan);
+    
         return back()->with('success', 'Image uploaded successfully');
     }
 
