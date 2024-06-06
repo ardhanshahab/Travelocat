@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
               <label for="harga_awal">Harga Awal</label>
-              <input type="text" name="harga_awal" id="harga_awal" class="form-control" value={{ old('harga_awal') }}>
+              <input type="text" name="harga_awal" id="harga_awal" readonly class="form-control" value={{ old('harga_awal') }}>
             </div>
             <div class="row">
               <div class="col">

@@ -27,6 +27,15 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{ URL::to('contact') }}">PetCare</a>
           </li>
+          @auth            
+          @if (auth()->user()->role == 'admin')
+          <li class="nav-item active">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>           
+          @else 
+          @endif
+          @endauth
+
           {{-- <form action="/product" method="GET">
             <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
           </form> --}}
