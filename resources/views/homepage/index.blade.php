@@ -28,7 +28,7 @@
       <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
         <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin: auto;">
           <a href="{{ URL::to('product/'.$promo->produk->slug_produk) }}">
-            <img src="{{ $promo->produk->foto ? \Storage::url($promo->produk->foto) : asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
+            <img src="{{ $promo->produk->foto ? asset('assets/produk/' . $promo->produk->foto) : asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           </a>
         </div>
         <div class="card-body" style="border:none; background-color: #FF71CD;">
