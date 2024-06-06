@@ -75,7 +75,7 @@
                     <a href="{{ route('transaksi.show', $order->id) }}" class="btn btn-sm btn-info mb-2">
                       Detail
                     </a>
-                    @if (auth()->user()->role == 'member')
+                    @if (auth()->user()->role == 'admin')
                     <a href="{{ route('transaksi.edit', $order->id) }}" class="btn btn-sm btn-primary mb-2">
                       Edit
                     </a>
