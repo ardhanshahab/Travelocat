@@ -11,7 +11,8 @@
       </a>
     </li>
 
-
+    @if (auth()->user()->role == 'admin')
+      
     <li class="nav-item has-treeview">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-folder-open"></i>
@@ -80,7 +81,7 @@
         <li class="nav-item">
           <a href="{{ URL::to('admin/laporan') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Penjualan</p>
+            <p>Feedback Petshop</p>
           </a>
         </li>
       </ul>
@@ -103,15 +104,35 @@
           </a>
         </li>
       </ul>
-      <ul class="nav nav-treeview">
+      {{-- <ul class="nav nav-treeview">
         <li class="nav-item">
           <a href="{{ route('customer.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Customer</p>
           </a>
         </li>
-      </ul>
+      </ul> --}}
     </li>
+
+    @else
+    
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="{{ route('transaksi.index') }}" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Data Transaksi</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ route('wishlist.index') }}" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Wishlist</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+  
+  @endif
 
 
     <li class="nav-item">

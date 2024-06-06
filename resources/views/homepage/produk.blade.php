@@ -49,7 +49,7 @@
       <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
         <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
           @if($produk->foto != null)
-          <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
+          <img src="{{ $produk->foto ? asset('assets/produk/' . $produk->foto) : asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           @else
           <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           @endif

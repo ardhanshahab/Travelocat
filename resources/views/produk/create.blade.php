@@ -13,6 +13,8 @@
           </div>
         </div>
         <div class="card-body">
+          {{-- {{ $data }} --}}
+
           @if(count($errors) > 0)
           @foreach($errors->all() as $error)
               <div class="alert alert-warning">{{ $error }}</div>
@@ -35,13 +37,13 @@
               <select name="kategori_id" id="kategori_id" class="form-control">
                 <option value="">Pilih Kategori</option>
                 @foreach($itemkategori as $kategori)
-                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                <option value="{{ $kategori->id }}">{{ $kategori->kode_kategori }} - {{ $kategori->nama_kategori }}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
               <label for="kode_produk">Kode Produk</label>
-              <input type="text" name="kode_produk" id="kode_produk" class="form-control">
+              <input type="text" name="kode_produk" id="kode_produk" class="form-control" readonly>
             </div>
             <div class="form-group">
               <label for="nama_produk">Nama Produk</label>
@@ -83,4 +85,37 @@
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Slug generation
+    $('#nama_produk').on('input', function() {
+      var namaProduk = $(this).val();
+      var slugProduk = namaProduk.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')  // Remove all non-alphanumeric characters except spaces and hyphens
+        .replace(/\s+/g, '-')         // Replace spaces with hyphens
+        .replace(/-+/g, '-');         // Replace multiple hyphens with a single hyphen
+      $('#slug_produk').val(slugProduk);
+    });
+
+    // Generate Kode Produk
+    $('#kategori_id').change(function() {
+      var kategoriId = $(this).val();
+      var kodeKategori = $(this).find('option:selected').text().split(' - ')[0];
+
+      // Count the number of products with the selected category
+      var countProduk = 0;
+      @foreach($itemproduk as $produk)
+        if ({{ $produk->kategori_id }} == kategoriId) {
+          countProduk++;
+        }
+      @endforeach
+
+      // Generate the product code
+      var kodeProduk = kodeKategori + '-' + (countProduk + 1).toString().padStart(3, '0');
+      $('#kode_produk').val(kodeProduk);
+    });
+  });
+</script>
 @endsection

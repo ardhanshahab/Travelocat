@@ -9,7 +9,7 @@
                         <div class="mb-md-5 mt-md-4 pb-5">
                             <div class="d-flex flex-column align-items-center">
                                 <h1>Sign In</h1>
-                                <div class="text-center" >Halo kawan Kojo
+                                <div class="text-center" >
                                     <br>Silahkan login di bawah ini!
                                 </div>
                                 <form method="POST" action="{{ route('login') }}" class="form-auth">
@@ -30,17 +30,17 @@
                                     </span>
                                     @enderror
                                 </div><br>
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                 <a class="btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
-                                @endif
+                                @endif --}}
                                 <br>
                                 <button type="submit" class="btn btn-outline mt-2">
                                     {{ __('Sign In') }}
                                 </button>
                                 <p class="mt-2">Don't have an account??
-                                    <a href="{{ route('register') }}" class="text-decoration-none"> Sign Up here</a>
+                                    <a href="{{ route('register') }}" class="text-decoration-none" style="color: black"> Sign Up here</a>
                                 </p>
                             </div>
                         </div>       

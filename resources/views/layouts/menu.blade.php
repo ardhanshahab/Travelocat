@@ -5,7 +5,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="mr-auto navbar-nav"></ul>
+      <ul class="mr-auto navbar-nav">
+        Travelocat
+      </ul>
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="/">Home</a>
@@ -14,10 +16,16 @@
             <a class="nav-link" href="{{ URL::to('product') }}">Product</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="{{ URL::to('contact') }}">Contact</a>
+            <a class="nav-link" href="{{ URL::to('about') }}">About</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="{{ URL::to('about') }}">About</a>
+            <a class="nav-link" href="{{ URL::to('about') }}">Feedback</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ URL::to('contact') }}">Pethotel</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ URL::to('contact') }}">PetCare</a>
           </li>
           {{-- <form action="/product" method="GET">
             <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
@@ -38,7 +46,7 @@
             <a href="{{ URL::to('profile') }} " class="bi bi-person-circle fa-lg nav-link"><small class="ml-1" >{{ Auth::user()->name }}</small></a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('logout') }}" class="bi bi-arrow-right-square-fill fa-lg nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
+            <a href="{{ route('logout') }}" class="bi bi-power fa-lg nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
           </li>
 
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

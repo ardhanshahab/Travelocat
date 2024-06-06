@@ -17,31 +17,31 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-        $itemorder = Order::orderBy('created_at', 'desc')->paginate(20);
-        $data = array('title' => 'Transaction Data',
-                    'itemorder' => $itemorder);
-                    return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
-        // $itemuser = $request->user();
-        // if ($itemuser->role == 'admin') {
-        //     // kalo admin maka menampilkan semua cart
-        //     $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
-        //                     $q->where('status_cart', 'checkout');
-        //                 })
-        //                 ->orderBy('created_at', 'desc')
-        //                 ->paginate(20);
-        // } else {
-        //     // kalo member maka menampilkan cart punyanya sendiri
-        //     $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
-        //                     $q->where('status_cart', 'checkout');
-        //                     $q->where('user_id', $itemuser->id);
-        //                 })
-        //                 ->orderBy('created_at', 'desc')
-        //                 ->paginate(20);
-        // }
+        // $itemorder = Order::orderBy('created_at', 'desc')->paginate(20);
         // $data = array('title' => 'Transaction Data',
-        //             'itemorder' => $itemorder,
-        //             'itemuser' => $itemuser);
-        // return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
+        //             'itemorder' => $itemorder);
+        //             return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
+        $itemuser = $request->user();
+        if ($itemuser->role == 'admin') {
+            // kalo admin maka menampilkan semua cart
+            $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
+                            $q->where('status_cart', 'checkout');
+                        })
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(20);
+        } else {
+            // kalo member maka menampilkan cart punyanya sendiri
+            $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
+                            $q->where('status_cart', 'checkout');
+                            $q->where('user_id', $itemuser->id);
+                        })
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(20);
+        }
+        $data = array('title' => 'Transaction Data',
+                    'itemorder' => $itemorder,
+                    'itemuser' => $itemuser);
+        return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
     /**

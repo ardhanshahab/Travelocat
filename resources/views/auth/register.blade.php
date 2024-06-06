@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="mt-2">
                                         <button type="submit" class="btn btn-outline mt-3" style="color: black">Sign-Up</button>
-                                        <p class="mt-2">Already have an account?<a href="{{ route('login') }}" class="text-decoration-none"> Sign-In here</a></p>
+                                        <p class="mt-2">Already have an account?<a href="{{ route('login') }}" class="text-decoration-none" style="color: black"> Sign-In here</a></p>
                                     </div>
                                 </div>
                             </div>

@@ -20,8 +20,8 @@ Route::get('/category/{slug}', [\App\Http\Controllers\HomepageController::class,
 Route::get('/product', [\App\Http\Controllers\HomepageController::class,'produk']);
 Route::get('/product/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
 
-Route::get('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'getLogin'])->name('admin.login');
-Route::post('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'postLogin']);
+// Route::get('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'getLogin'])->name('admin.login');
+// Route::post('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'postLogin']);
 
 //dashboard admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('cartdetail', \App\Http\Controllers\CartDetailController::class);
     Route::resource('alamatpengiriman', \App\Http\Controllers\AlamatPengirimanController::class);
     Route::get('checkout',[\App\Http\Controllers\CartController::class,'checkout']);
+    Route::resource('feedback', \App\Http\Controllers\FeedbackController::class);
     Route::post('comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 });
 

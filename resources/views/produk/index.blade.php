@@ -60,7 +60,7 @@
                   </td>
                   <td>
                     @if($produk->foto != null)
-                    <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" width='150px' class="img-thumbnail">
+                    <img src="{{ $produk->foto ? asset('assets/produk/' . $produk->foto) : asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" width='150px' class="img-thumbnail">
                     @endif
                   </td>
                   <td>

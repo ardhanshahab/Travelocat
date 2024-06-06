@@ -56,4 +56,18 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('#nama_kategori').on('input', function(){
+      var namaKategori = $(this).val();
+      var slugKategori = namaKategori.toLowerCase()
+                      .replace(/[^a-z0-9\s-]/g, '')
+                      .replace(/[\s-]+/g, '-')
+                      .replace(/^-+|-+$/g, '');
+      $('#slug_kategori').val(slugKategori);
+    });
+  });
+</script>
 @endsection

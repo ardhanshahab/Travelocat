@@ -32,8 +32,11 @@ class ProdukController extends Controller
     public function create()
     {
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->get();
+        $itemproduk = Produk::all();
         $data = array('title' => 'Form New Product',
-                    'itemkategori' => $itemkategori);
+                    'itemkategori' => $itemkategori,
+                    'itemproduk' => $itemproduk
+                );
         return view('produk.create', $data);
     }
 
