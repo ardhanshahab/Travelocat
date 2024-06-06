@@ -19,11 +19,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="nama">Nama:</label>
-                            <input type="text" class="form-control" id="nama" name="nama" required>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ auth()->user()->name }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="komentar">Komentar:</label>
@@ -149,6 +149,93 @@
                                 <hr class="mt-4">
                             </div>
                         </div>
+                        <div class="row m-1">
+                            <div class="col-lg-6">
+                                <h2 class="h5">
+                                    Responsif dalam Pelayanan Online maupun Offline
+                                </h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="1" id="S1-1" name="S1">
+                                        <label class="form-check-label" for="S1-1">Kurang</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="2" id="S1-2" name="S1">
+                                        <label class="form-check-label" for="S1-2">Cukup</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="3" id="S1-3" name="S1">
+                                        <label class="form-check-label" for="S1-3">Baik</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="4" id="S1-4" name="S1">
+                                        <label class="form-check-label" for="S1-4">Baik Sekali</label>
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                            </div>
+                        </div>
+
+                        <div class="row m-1">
+                            <div class="col-lg-6">
+                                <h2 class="h5">
+                                    Cara Menjawab Pertanyaan yang anda berikan
+                                </h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="1" id="E1-1" name="E1">
+                                        <label class="form-check-label" for="E1-1">Kurang</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="2" id="E1-2" name="E1">
+                                        <label class="form-check-label" for="E1-2">Cukup</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="3" id="E1-3" name="E1">
+                                        <label class="form-check-label" for="E1-3">Baik</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="4" id="E1-4" name="E1">
+                                        <label class="form-check-label" for="E1-4">Baik Sekali</label>
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                            </div>
+                        </div>
+
+                        <div class="row m-1">
+                            <div class="col-lg-6">
+                                <h2 class="h5">
+                                    Keamanan Dalam Berbelanja
+                                </h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="1" id="E2-1" name="E2">
+                                        <label class="form-check-label" for="E2-1">Kurang</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="2" id="E2-2" name="E2">
+                                        <label class="form-check-label" for="E2-2">Cukup</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="3" id="E2-3" name="E2">
+                                        <label class="form-check-label" for="E2-3">Baik</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" value="4" id="E2-4" name="E2">
+                                        <label class="form-check-label" for="E2-4">Baik Sekali</label>
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                            </div>
+                        </div>
+
                         <h4>Produk</h4>
                         <div class="row m-1">
                             <div class="col-lg-6">
@@ -206,57 +293,30 @@
                                 <hr class="mt-4">
                             </div>
                         </div>
+                        
                         <div class="row m-1">
                             <div class="col-lg-6">
                                 <h2 class="h5">
-                                    Responsif dalam Pelayanan Online maupun Offline
+                                    Penataan Display Produk
                                 </h2>
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex justify-content-between mb-2">
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="1" id="S1-1" name="S1">
-                                        <label class="form-check-label" for="S1-1">Kurang</label>
+                                        <input type="radio" class="form-check-input" value="1" id="S2-1" name="S2">
+                                        <label class="form-check-label" for="S2-1">Kurang</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="2" id="S1-2" name="S1">
-                                        <label class="form-check-label" for="S1-2">Cukup</label>
+                                        <input type="radio" class="form-check-input" value="2" id="S2-2" name="S2">
+                                        <label class="form-check-label" for="S2-2">Cukup</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="3" id="S1-3" name="S1">
-                                        <label class="form-check-label" for="S1-3">Baik</label>
+                                        <input type="radio" class="form-check-input" value="3" id="S2-3" name="S2">
+                                        <label class="form-check-label" for="S2-3">Baik</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="4" id="S1-4" name="S1">
-                                        <label class="form-check-label" for="S1-4">Baik Sekali</label>
-                                    </div>
-                                </div>
-                                <hr class="mt-4">
-                            </div>
-                        </div>
-                        <div class="row m-1">
-                            <div class="col-lg-6">
-                                <h2 class="h5">
-                                    
-                                </h2>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="1" id="T1-1" name="T1">
-                                        <label class="form-check-label" for="T1-1">Kurang</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="2" id="T1-2" name="T1">
-                                        <label class="form-check-label" for="T1-2">Cukup</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="3" id="T1-3" name="T1">
-                                        <label class="form-check-label" for="T1-3">Baik</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" value="4" id="T1-4" name="T1">
-                                        <label class="form-check-label" for="T1-4">Baik Sekali</label>
+                                        <input type="radio" class="form-check-input" value="4" id="S2-4" name="S2">
+                                        <label class="form-check-label" for="S2-4">Baik Sekali</label>
                                     </div>
                                 </div>
                                 <hr class="mt-4">
