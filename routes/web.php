@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('alamatpengiriman', \App\Http\Controllers\AlamatPengirimanController::class);
     Route::get('checkout',[\App\Http\Controllers\CartController::class,'checkout']);
     Route::resource('feedback', \App\Http\Controllers\FeedbackController::class);
+    Route::get('listfeedback', [\App\Http\Controllers\FeedbackController::class, 'listfeedback'])->name('listfeedback');
     Route::post('comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 });
 

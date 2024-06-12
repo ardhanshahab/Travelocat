@@ -1,9 +1,26 @@
 @extends('layouts.template')
 @section('content')
 <div class="container" style="width: auto; height: auto;">
- 
+ <div class="row">
+      <div class="col-md-12">
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+          <div class="container-fluid py-5">
+            <div class="row">
+              <div class="col-md-4">
+                <img src="{{ asset('images/cimot.jpeg') }}" alt="eumot" style="height: 250px">
+              </div>
+              <div class="col-md-8">
+                <h1 class="display-5 fw-bold">Travelocat</h1>
+                <p class="col-md-8 fs-4">Selamat datang di website Travelocat.</p>
+                <button class="btn btn-primary btn-lg" type="button">Lihat Produk</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ </div>
   <!-- kategori -->
-  <div class="card" style="padding: 20px; background-color: #5755FE; border:none;">
+  <div class="card" style="padding: 20px; background-color: #A0DEFF; border:none;">
     <div class="bg-transparent">
       <h2 class="text-center" style="font-weight:bold; margin-bottom: 20px;">Kategori Produk</h2>
       <div class="btn-group d-flex flex-wrap shadow-none mt-1 ms-2">
@@ -31,7 +48,7 @@
             <img src="{{ $promo->produk->foto ? asset('assets/produk/' . $promo->produk->foto) : asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           </a>
         </div>
-        <div class="card-body" style="border:none; background-color: #FF71CD;">
+        <div class="card-body" style="border:none; background-color: #5AB2FF;">
           <div class="row mt-4">
             <div class="col">
               <a class="text-decoration-none" style="color: black;">
@@ -75,7 +92,7 @@
             <img src="{{ $produk->foto ? asset('assets/produk/' . $produk->foto) : asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           </a>
         </div>
-        <div class="card-body" style="border:none; background-color: #FF71CD;">
+        <div class="card-body" style="border:none; background-color: #5AB2FF;">
           <div class="row mt-4">
             <div class="col">
               <a class="text-decoration-none" style="color: black;">

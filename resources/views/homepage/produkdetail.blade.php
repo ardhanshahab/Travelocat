@@ -2,21 +2,16 @@
 @section('content')
 <div class="container" style="margin-top:70px;">
   <div class="row mt-4">
-    <div class="col col-lg-8 col-md-8">
-      @foreach($itemproduk->images as $index => $image)
-      @if($index == 0)
-        <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%; box-shadow: 5px 6px 6px 2px #e9ecef;">
-      @else
-        <img src="{{ asset('images/KOJO 1.png') }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%;">
-      @endif
-      @endforeach
+    <div class="col col-lg-8 col-md-8"> 
+      {{-- {{ $itemproduk }} --}}
+      <img src="{{ $itemproduk->foto ? asset('assets/produk/' . $itemproduk->foto) : asset('images/bag.jpg') }}" alt="{{ $itemproduk->nama_produk }}" class="card-img-top" style="height:auto; width: 100%;">
     </div>
 
 <!-- Product -->
     <div class="col col-lg-4 col-md-4">
       <div class="row">
         <div class="col">
-          <div class="card" style="border:none; background-color: #5755FE; box-shadow: 5px 6px 6px 2px #e9ecef;">
+          <div class="card" style="border:none; background-color: #A0DEFF; box-shadow: 5px 6px 6px 2px #e9ecef;">
             <div class="card-body card-yellow">
               @if(count($errors) > 0)
               @foreach($errors->all() as $error)
@@ -85,8 +80,8 @@
 <!-- Description -->
       <div class="row mt-4">
         <div class="col">
-          <div class="card" style="border-color:#5755FE; box-shadow: 5px 6px 6px 2px #e9ecef;">
-            <div class="card-header" style="border:none; background-color: #5755FE;">
+          <div class="card" style="border-color:#A0DEFF; box-shadow: 5px 6px 6px 2px #e9ecef;">
+            <div class="card-header" style="border:none; background-color: #A0DEFF;">
               <h5>Description</h5>
             </div>
             <div class="card-body">
@@ -100,8 +95,8 @@
 <!-- Comment -->
       <div class="row mt-4">
         <div class="col">
-          <div class="card" style="border-color:#5755FE; box-shadow: 5px 6px 6px 2px #e9ecef;">
-            <div class="card-header" style="border:none; background-color: #5755FE;">
+          <div class="card" style="border-color:#CAF4FF; box-shadow: 5px 6px 6px 2px #e9ecef;">
+            <div class="card-header" style="border:none; background-color: #A0DEFF;">
               <h5>Add Review</h5>
             </div>
             <div class="card-body">
@@ -135,8 +130,8 @@
 <!-- DisplayComment -->
   <div class="row mt-4">
     <div class="col">
-      <div class="card" style="border-color:#5755FE; box-shadow: 5px 6px 6px 2px #e9ecef;">
-        <div class="card-header" style="border:none; background-color: #5755FE;">
+      <div class="card" style="border-color:#A0DEFF; box-shadow: 5px 6px 6px 2px #e9ecef;">
+        <div class="card-header" style="border:none; background-color: #A0DEFF;">
           <h5>Display Comment</h5>
         </div>
         <div class="card-body">

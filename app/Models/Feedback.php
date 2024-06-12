@@ -25,4 +25,8 @@ class Feedback extends Model
         'E2',
         'rating',
     ];
+
+    public function user() {//user yang menginput data image
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
 }

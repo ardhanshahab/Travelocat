@@ -25,7 +25,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
+  @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show m-0 alert-custom" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>    
+    </div>
+  @endif
+  @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show m-0 alert-custom" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>    
+    </div>
+  @endif
+  @if($errors->any())
+  <div class="alert alert-danger alert-dismissible fade show m-0 alert-custom" role="alert">
+    @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+    @endforeach
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>    
+  </div>
+  @endif
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -111,8 +136,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
+              {{-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li> --}}
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

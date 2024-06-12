@@ -323,10 +323,6 @@
                             </div>
                         </div>
                         
-                        
-                        
-                        
-                        
                         <button type="submit" class="btn btn-primary">Kirim</button>
                     </form>
                 </div>

@@ -6,11 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="mr-auto navbar-nav">
-        Travelocat
+        <a href="/" class="text-decoration-none" style="color: #000">Travelocat</a>
       </ul>
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home</a>
+            {{-- <a class="nav-link" href="/">Home</a> --}}
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="{{ URL::to('product') }}">Product</a>
@@ -19,14 +19,14 @@
             <a class="nav-link" href="{{ URL::to('about') }}">About</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="{{ URL::to('about') }}">Feedback</a>
+            <a class="nav-link" href="{{ URL::to('feedback') }}">Feedback</a>
           </li>
-          <li class="nav-item active">
+          {{-- <li class="nav-item active">
             <a class="nav-link" href="{{ URL::to('contact') }}">Pethotel</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="{{ URL::to('contact') }}">PetCare</a>
-          </li>
+          </li> --}}
           @auth            
           @if (auth()->user()->role == 'admin')
           <li class="nav-item active">
@@ -39,8 +39,8 @@
           {{-- <form action="/product" method="GET">
             <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
           </form> --}}
-          <li class="nav-item">
-            <a class="bi bi-bookmark-fill fa-lg nav-link ml-4" href="{{ URL::to('wishlist') }}"></a>
+          <li class="nav-item mx-2">
+            <a class="bi bi-heart-fill fa-lg nav-link ml-4" href="{{ URL::to('wishlist') }}"></a>
           </li>
           @guest
           <li class="nav-item active">
