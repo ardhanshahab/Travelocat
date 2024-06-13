@@ -6,7 +6,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="mr-auto navbar-nav">
-        <a href="/" class="text-decoration-none" style="color: #000">Travelocat</a>
+        <div class="d-flex align-items-center">
+          <img src="{{ asset('images/logo.svg') }}" alt="eumot" style="height: 50px">
+          <a href="/" class="text-decoration-none" style="color: #000">Travelocat</a>  
+        </div>
       </ul>
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -40,7 +43,10 @@
             <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
           </form> --}}
           <li class="nav-item mx-2">
-            <a class="bi bi-heart-fill fa-lg nav-link ml-4" href="{{ URL::to('wishlist') }}"></a>
+            <a class="bi bi-bell-fill fa-lg nav-link ml-2" href="{{ URL::to('wishlist') }}"></a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="bi bi-heart-fill fa-lg nav-link ml-2" href="{{ URL::to('wishlist') }}"></a>
           </li>
           @guest
           <li class="nav-item active">

@@ -7,6 +7,9 @@ use App\Models\Cart;
 use App\Models\AlamatPengiriman;
 use App\Models\Order;
 use App\Models\Produk;
+use App\Models\notif;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\PaymentAndShippingStatus;
 
 class TransaksiController extends Controller
 {
@@ -38,8 +41,11 @@ class TransaksiController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->paginate(20);
         }
+        $notifications = Notif::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(5)->get();
+
         $data = array('title' => 'Transaction Data',
                     'itemorder' => $itemorder,
+                    'notifications' => $notifications,
                     'itemuser' => $itemuser);
         return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
@@ -62,6 +68,8 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $itemuser = $request->user();
         $itemcart = Cart::where('status_cart', 'cart')
                         ->where('user_id', $itemuser->id)
@@ -89,6 +97,19 @@ class TransaksiController extends Controller
                 $itemorder = Order::create($inputanorder);
                 $itemcart->update(['status_cart' => 'checkout']);
                 // $itemcart->update($produk->qty - $itemcart->detail->qty);
+                 // Buat notifikasi pembayaran
+                Notif::create([
+                    'user_id' => $itemuser->id,
+                    'message' => 'Segera Lakukan Pembayaran untuk pesanan dengan ID: ' . $itemcart->no_invoice,
+                    'read' => false,
+                ]);
+
+                // Buat notifikasi pengiriman
+                Notif::create([
+                    'user_id' => $itemuser->id,
+                    'message' => 'Pesanan Anda dengan ID: ' . $itemcart->no_invoice . ' sedang dalam proses pembayaran.',
+                    'read' => false,
+                ]);
                 return redirect()->route('transaksi.index')->with('success', 'Order successfully saved');
             } else {
                 return back()->with('error', 'The shipping address has not been filled in');
@@ -156,6 +177,7 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request,[
             'status_pembayaran' => 'required',
             'status_pengiriman' => 'required',
@@ -172,7 +194,22 @@ class TransaksiController extends Controller
         $inputan['diskon'] = str_replace(',','',$request->diskon);
         $inputan['total'] = str_replace(',','',$request->total);
         $itemorder = Order::findOrFail($id);
+        // dd($itemorder->cart);
         $itemorder->cart->update($inputan);
+        if($request->status_pembayaran == 'sudah'){
+            Notif::create([
+                'user_id' => $itemorder->cart->user_id,
+                'message' => 'Segera Lakukan Pembayaran untuk pesanan dengan ID: ' . $itemorder->cart->no_invoice,
+                'read' => false,
+            ]);
+    
+            // Buat notifikasi pengiriman
+            Notif::create([
+                'user_id' => $itemorder->cart->user_id,
+                'message' => 'Pesanan Anda dengan ID: ' . $itemorder->cart->no_invoice . ' sedang dalam proses pembayaran.',
+                'read' => false,
+            ]);    
+        }
         return back()->with('success','Order successfully updated');
     }
 

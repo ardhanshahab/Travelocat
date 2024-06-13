@@ -1,24 +1,41 @@
 @extends('layouts.template')
 @section('content')
 <div class="container" style="width: auto; height: auto;">
+  
  <div class="row">
       <div class="col-md-12">
         <div class="p-5 mb-4 bg-body-tertiary rounded-3">
           <div class="container-fluid py-5">
             <div class="row">
               <div class="col-md-4">
-                <img src="{{ asset('images/cimot.jpeg') }}" alt="eumot" style="height: 250px">
+                <img src="{{ asset('images/cimot.svg') }}" alt="eumot" style="height: 250px">
               </div>
               <div class="col-md-8">
                 <h1 class="display-5 fw-bold">Travelocat</h1>
                 <p class="col-md-8 fs-4">Selamat datang di website Travelocat.</p>
-                <button class="btn btn-primary btn-lg" type="button">Lihat Produk</button>
+                <a class="btn btn-primary btn-lg" href="{{ URL::to('product') }}">Lihat Produk</a>
               </div>
             </div>
           </div>
         </div>
       </div>
  </div>
+ <div class="col-md-12">
+  <h5>Notifikasi</h5>
+  <div class="card">
+    <div class="card-body">
+      <ul class="list-group">
+        @forelse($notifications as $notification)
+            <li class="list-group-item {{ $notification->read ? '' : 'font-weight-bold' }}">
+                {{ $notification->message }}
+            </li>
+        @empty
+            <li class="list-group-item">Tidak ada notifikasi</li>
+        @endforelse
+    </ul>
+    </div>
+  </div>
+</div>
   <!-- kategori -->
   <div class="card" style="padding: 20px; background-color: #A0DEFF; border:none;">
     <div class="bg-transparent">
@@ -122,39 +139,36 @@
   <!-- end produk terbaru -->
    <!-- carousel-->
    <h2>Testimonials</h2>
-   <div id="myCarousel" class="carousel slide my-2" data-ride="carousel">
-     <!-- Carousel indicators -->
-     <ol class="carousel-indicators">
-       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-       <li data-target="#myCarousel" data-slide-to="1"></li>
-       <li data-target="#myCarousel" data-slide-to="2"></li>
-     </ol>   
-     <!-- Wrapper for carousel items -->
-     <div class="carousel-inner">
-       <div class="carousel-item active">
-         <div class="img-box"><img src="/examples/images/clients/1.jpg" alt=""></div>
-         <p class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-         <p class="overview"><b>Paula Wilson</b>, Media Analyst</p>
-       </div>
-       <div class="carousel-item">
-         <div class="img-box"><img src="/examples/images/clients/2.jpg" alt=""></div>
-         <p class="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio.</p>
-         <p class="overview"><b>Antonio Moreno</b>, Web Developer</p>
-       </div>
-       <div class="carousel-item">
-         <div class="img-box"><img src="/examples/images/clients/3.jpg" alt=""></div>
-         <p class="testimonial">Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.</p>
-         <p class="overview"><b>Michael Holz</b>, Seo Analyst</p>
-       </div>
-     </div>
-     <!-- Carousel controls -->
-     <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-       <i class="fa fa-angle-left"></i>
-     </a>
-     <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-       <i class="fa fa-angle-right"></i>
-     </a>
-   </div>
+    <div id="myCarousel" class="carousel slide my-2" data-ride="carousel">
+      <!-- Carousel indicators -->
+      <ol class="carousel-indicators">
+        @foreach($itemfeedback as $index => $feedback)
+          <li data-target="#myCarousel" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+        @endforeach
+      </ol>   
+
+      <!-- Wrapper for carousel items -->
+      <div class="carousel-inner">
+        @foreach($itemfeedback as $index => $feedback)
+          <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+            <div class="img-box"><img src="/examples/images/clients/1.jpg" alt=""></div>
+            <p class="testimonial">{{ $feedback->komentar }}</p>
+            <p class="overview">{{ $feedback->user->name }}</p>
+          </div>       
+        @endforeach
+      </div>
+
+      <!-- Carousel controls -->
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
 </div>
 <style>
     .carousel {

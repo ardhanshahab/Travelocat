@@ -1,6 +1,15 @@
 @extends('layouts.dashboard')
 @section('content')
 <div class="container-fluid">
+  <ul class="list-group">
+      @forelse($notifications as $notification)
+          <li class="list-group-item {{ $notification->read ? '' : 'font-weight-bold' }}">
+              {{ $notification->message }}
+          </li>
+      @empty
+          <li class="list-group-item">Tidak ada notifikasi</li>
+      @endforelse
+  </ul>
   <div class="row">
     <div class="col-6 col-lg-3">
       <div class="small-box bg-primary">

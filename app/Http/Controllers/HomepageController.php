@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Kategori;
 use App\Models\Slideshow;
 use App\Models\ProdukPromo;
 use App\Models\Wishlist;
-use Auth;
+use App\Models\notif;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\PaymentAndShippingStatus;
+use Illuminate\Support\Facades\Notification;
 
 class HomepageController extends Controller
 {
@@ -17,13 +21,25 @@ class HomepageController extends Controller
         $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(3)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
+        $itemfeedback = Feedback::with('user')->get();
+        $notifications = Notif::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(5)->get();
+
+        // Misalkan kita punya user
+    
         $data = array('title' => 'Travelocat',
             'itemproduk' => $itemproduk,
             'itempromo' => $itempromo,
             'itemkategori' => $itemkategori,
-            'itemslide' => $itemslide
+            'itemslide' => $itemslide,
+            'notifications' => $notifications,
+            'itemfeedback' => $itemfeedback
         );
         return view('homepage.index', $data);
+    }
+
+    public function navbarNotifications()
+    {
+        return view('layouts.menu', compact('notifications'));
     }
 
     public function item() {
