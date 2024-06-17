@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class notif extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'message', 'read'];
+    protected $fillable = ['user_id', 'message', 'read', 'tipe'];
 
     public function user()
     {

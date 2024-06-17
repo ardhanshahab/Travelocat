@@ -10,6 +10,7 @@ use App\Models\Slideshow;
 use App\Models\ProdukPromo;
 use App\Models\Wishlist;
 use App\Models\notif;
+use App\Models\cart;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\PaymentAndShippingStatus;
 use Illuminate\Support\Facades\Notification;
@@ -22,7 +23,7 @@ class HomepageController extends Controller
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
         $itemfeedback = Feedback::with('user')->get();
-        $notifications = Notif::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(5)->get();
+        $notifications = Notif::where('user_id', Auth::id())->orderBy('created_at', 'desc')->limit(5)->where('read', '0')->get();
 
         // Misalkan kita punya user
     
@@ -37,10 +38,45 @@ class HomepageController extends Controller
         return view('homepage.index', $data);
     }
 
-    public function navbarNotifications()
+    public function readnotif($id)
     {
-        return view('layouts.menu', compact('notifications'));
+        $notification = notif::find($id);
+        if ($notification) {
+            $notification->read = true;
+            $notification->save();
+        }
+
+        return redirect()->back()->with('success', 'Notifikasi telah dibaca');
     }
+
+    public function sudahsampai($id)
+    {
+        // Memisahkan invoice dari $id
+        $invoice = explode('-', $id);
+        $data = $invoice[0];
+
+        // Mencari cart berdasarkan no_invoice
+        $cart = Cart::where('no_invoice', $data)->first();
+
+        // Mengecek apakah cart ditemukan
+        if(!$cart){
+            return response()->json(['message' => 'Cart not found'], 404);
+        } else {
+            // Mengupdate status pengiriman
+            $cart->status_pengiriman = 'sudah';
+            $cart->save();
+            Notif::create([
+                'user_id' => $cart->user_id,
+                'message' => 'Pesanan Anda dengan ID: ' . $cart->no_invoice . ' sudah diterima, terimakasih telah berbelanja di toko kami.',
+                'read' => false,
+                'tipe' => '2',
+            ]);
+        }
+
+        // Mengarahkan kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Status pengiriman telah diperbarui');
+    }
+
 
     public function item() {
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();

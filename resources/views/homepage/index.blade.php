@@ -25,17 +25,36 @@
   <div class="card">
     <div class="card-body">
       <ul class="list-group">
+        {{-- {{ $notifications }} --}}
         @forelse($notifications as $notification)
             <li class="list-group-item {{ $notification->read ? '' : 'font-weight-bold' }}">
+                @if ($notification->tipe == '0')
+                  {{ $notification->message }}
+                      <a href="/pembayaran" class="btn btn-sm btn-secondary">Pembayaran</a>
+                @elseif ($notification->tipe == '1')
                 {{ $notification->message }}
+                <form action="{{ route('sampai.store', $notification->message) }}" method="POST" class="d-inline">
+                  @csrf
+                  <button type="submit" class="btn btn-sm btn-secondary">Konfirmasi Penerimaan</button>
+                </form>
+                @else
+                {{ $notification->message }}
+                @endif
+                @if (!$notification->read)
+                    <form action="{{ route('notifications.read', $notification->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-warning">Tandai telah dibaca</button>
+                    </form>
+                @endif
             </li>
         @empty
             <li class="list-group-item">Tidak ada notifikasi</li>
         @endforelse
-    </ul>
+      </ul>
     </div>
   </div>
 </div>
+
   <!-- kategori -->
   <div class="card" style="padding: 20px; background-color: #A0DEFF; border:none;">
     <div class="bg-transparent">

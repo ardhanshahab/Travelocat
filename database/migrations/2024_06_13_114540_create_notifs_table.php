@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('message');
+            $table->enum('tipe', ['0', '1', '2']); // Perbaikan di sini
             $table->boolean('read')->default(false);
             $table->timestamps();
         });
+        
     }
 
     /**

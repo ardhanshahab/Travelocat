@@ -102,6 +102,7 @@ class TransaksiController extends Controller
                     'user_id' => $itemuser->id,
                     'message' => 'Segera Lakukan Pembayaran untuk pesanan dengan ID: ' . $itemcart->no_invoice,
                     'read' => false,
+                    'tipe' => '0',
                 ]);
 
                 // Buat notifikasi pengiriman
@@ -109,6 +110,7 @@ class TransaksiController extends Controller
                     'user_id' => $itemuser->id,
                     'message' => 'Pesanan Anda dengan ID: ' . $itemcart->no_invoice . ' sedang dalam proses pembayaran.',
                     'read' => false,
+                    'tipe' => '2',
                 ]);
                 return redirect()->route('transaksi.index')->with('success', 'Order successfully saved');
             } else {
@@ -199,15 +201,37 @@ class TransaksiController extends Controller
         if($request->status_pembayaran == 'sudah'){
             Notif::create([
                 'user_id' => $itemorder->cart->user_id,
-                'message' => 'Segera Lakukan Pembayaran untuk pesanan dengan ID: ' . $itemorder->cart->no_invoice,
+                'message' => $itemorder->cart->no_invoice . '-' . 'Terimakasih sudah melakukan Pembayaran untuk pesanan dengan ID: ' . $itemorder->cart->no_invoice,
                 'read' => false,
+                'tipe' => '2',
+
             ]);
     
             // Buat notifikasi pengiriman
             Notif::create([
                 'user_id' => $itemorder->cart->user_id,
-                'message' => 'Pesanan Anda dengan ID: ' . $itemorder->cart->no_invoice . ' sedang dalam proses pembayaran.',
+                'message' => $itemorder->cart->no_invoice . '-' .  'Pesanan Anda dengan ID: ' . $itemorder->cart->no_invoice . ' sedang dalam proses pengiriman, klik konfirmasi penerimaan jika barang sudah diterima.',
                 'read' => false,
+                'tipe' => '1',
+            ]);
+            Notif::create([
+                'user_id' => '1',
+                'message' => 'Pesanan dengan ID: ' . $itemorder->cart->no_invoice . ' sudah membayar.',
+                'tipe' => '2',
+            ]);    
+        }
+        if($request->status_pengiriman == 'sudah'){
+            // Buat notifikasi pengiriman
+            Notif::create([
+                'user_id' => $itemorder->cart->user_id,
+                'message' => 'Pesanan Anda dengan ID: ' . $itemorder->cart->no_invoice . ' sudah diterima, terimakasih telah berbelanja di toko kami.',
+                'read' => false,
+                'tipe' => '2',
+            ]);
+            Notif::create([
+                'user_id' => '1',
+                'message' => 'Pesanan dengan ID: ' . $itemorder->cart->no_invoice . ' sudah diterima.',
+                'tipe' => '2',
             ]);    
         }
         return back()->with('success','Order successfully updated');

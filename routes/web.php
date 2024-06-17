@@ -56,6 +56,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('feedback', \App\Http\Controllers\FeedbackController::class);
     Route::get('listfeedback', [\App\Http\Controllers\FeedbackController::class, 'listfeedback'])->name('listfeedback');
     Route::post('comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+    Route::post('/notifications/{id}/read', [\App\Http\Controllers\HomepageController::class, 'readnotif'])->name('notifications.read');
+    Route::get('pembayaran', [\App\Http\Controllers\pembayaranController::class, 'index'])->name('pembayaran.index');
+    Route::post('/sudah/{id}', [\App\Http\Controllers\HomepageController::class, 'sudahsampai'])->name('sampai.store');
+
 });
 
 Auth::routes();
