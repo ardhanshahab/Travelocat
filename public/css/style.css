@@ -95,10 +95,14 @@ nav{
     outline: none;
     border:0; 
 }
-.bg-auth{
-    /* background:  #F0EAD2; */
-    border-radius: 1rem;
+.bg-auth {
+    background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 0rem;
 }
+
 .btn-link{
     color: #212121;
 }
