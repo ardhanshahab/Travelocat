@@ -19,7 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="icon" href="{{ asset('images/rpl.png') }}" type="image/icon type">
+      <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/icon type">
+
   <!-- jQuery -->
 <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
 </head>

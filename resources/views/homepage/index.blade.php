@@ -31,6 +31,8 @@
                 @if ($notification->tipe == '0')
                   {{ $notification->message }}
                       <a href="/pembayaran" class="btn btn-sm btn-secondary">Pembayaran</a>
+                      <a href="{{ route('invoice',  $notification->message) }}" class="btn btn-sm btn-secondary">Lihat Invoice</a>
+
                 @elseif ($notification->tipe == '1')
                 {{ $notification->message }}
                 <form action="{{ route('sampai.store', $notification->message) }}" method="POST" class="d-inline">
@@ -46,6 +48,7 @@
                         <button type="submit" class="btn btn-sm btn-warning">Tandai telah dibaca</button>
                     </form>
                 @endif
+                
             </li>
         @empty
             <li class="list-group-item">Tidak ada notifikasi</li>

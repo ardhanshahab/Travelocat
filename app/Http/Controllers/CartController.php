@@ -118,4 +118,19 @@ class CartController extends Controller
             return abort('404');
         }
     }
+
+    public function invoice($id)
+    {
+        $itemuser = auth()->user();
+        $invoice = explode(': ', $id);
+        $data = $invoice[1];
+        $alamat = AlamatPengiriman::where('user_id', $itemuser->id)->first();
+        $itemcart = Cart::with('detail.produk')
+                        ->where('user_id', $itemuser->id)
+                        ->where('no_invoice', $data)
+                        ->first();
+        $data = $itemcart;
+        // return $data;
+        return view('invoice.invoice', compact('data', 'itemuser', 'alamat'));
+    }
 }

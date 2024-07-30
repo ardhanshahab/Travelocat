@@ -54,6 +54,7 @@ class HomepageController extends Controller
         // Memisahkan invoice dari $id
         $invoice = explode('-', $id);
         $data = $invoice[0];
+        return $data;
 
         // Mencari cart berdasarkan no_invoice
         $cart = Cart::where('no_invoice', $data)->first();
