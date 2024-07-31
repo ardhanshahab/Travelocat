@@ -48,7 +48,7 @@
               <thead>
                 <tr>
                   <th width="50px">No</th>
-                  <th>Gambar</th>
+                  {{-- <th>Gambar</th> --}}
                   <th>Kode</th>
                   <th>Nama</th>
                   <th>Jumlah Produk</th>
@@ -62,9 +62,9 @@
                   <td>
                   {{ ++$no }}
                   </td>
-                  <td>
+                  {{-- <td> --}}
                     <!-- image kategori -->
-                    @if($kategori->foto != null)
+                    {{-- @if($kategori->foto != null)
                     <img src="{{ \Storage::url($kategori->foto) }}" alt="{{ $kategori->nama_kategori }}" width='150px' class="img-thumbnail mb-2">
                     <br>
                     <form action="{{ url('/admin/imagekategori/'.$kategori->id) }}" method="post" style="display:inline;">
@@ -85,9 +85,9 @@
                         <button class="btn btn-primary">Upload</button>
                       </div>
                     </form>
-                    @endif
+                    @endif --}}
                     <!-- end image kategori -->
-                  </td>
+                  {{-- </td> --}}
                   <td>
                   {{ $kategori->kode_kategori }}
                   </td>
