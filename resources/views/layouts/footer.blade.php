@@ -23,7 +23,7 @@
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
           <p><i class="fas fa-home me-3"></i> Bandung</p>
           <p><i class="fas fa-envelope me-3"></i> sales@travelocat.com</p>
-          <p><i class="fas fa-phone me-3"></i> +628 1234 5678</p>
+          <p><i class="fas fa-phone me-3"></i> +628 9537 1984510</p>
         </div>
         <!-- Grid column -->
       </div>

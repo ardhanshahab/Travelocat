@@ -38,7 +38,7 @@
                                 <div class="text-muted">
                                     <p class="mb-1">Bandung</p>
                                     <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i> sales@travelocat.com</p>
-                                    <p><i class="uil uil-phone me-1"></i> +628 1234 5678</p>
+                                    <p><i class="uil uil-phone me-1"></i> +628 9537 1984510</p>
                                 </div>
                             </div>
         
