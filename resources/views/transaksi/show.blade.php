@@ -71,11 +71,15 @@
                     </b>
                   </td>
                 </tr>
+                {{-- <tr>
+                  {{ $itemorder }}
+                </tr> --}}
               </tbody>
             </table>
           </div>
         </div>
         <div class="card-footer">
+          <a href="{{ route('invoices', [$itemorder->cart->no_invoice, $itemorder->cart->user_id]) }}" class="btn btn-sm btn-primary">Lihat Invoice</a>
           <a href="{{ route('transaksi.index') }}" class="btn btn-sm btn-danger">Tutup</a>
         </div>
       </div>
@@ -130,14 +134,6 @@
                 </tr>
                 <tr>
                   <td>
-                    Subtotal
-                  </td>
-                  <td class="text-right">
-                  {{ number_format($itemorder->cart->subtotal, 2) }}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
                     Diskon
                   </td>
                   <td class="text-right">
@@ -153,6 +149,17 @@
                   </td>
                 </tr>
                 <tr>
+                  <tr>
+                    <td>
+                      Subtotal
+                    </td>
+                    @php
+                      $total = $itemorder->cart->total + $itemorder->cart->ongkir;
+                    @endphp
+                    <td class="text-right">
+                    {{ number_format($total, 2) }}
+                    </td>
+                  </tr>
                   <td>
                     Ekspedisi
                   </td>

@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('pembayaran', [\App\Http\Controllers\pembayaranController::class, 'index'])->name('pembayaran.index');
     Route::post('/sudah/{id}', [\App\Http\Controllers\HomepageController::class, 'sudahsampai'])->name('sampai.store');
     Route::get('invoice/{id}', [\App\Http\Controllers\CartController::class, 'invoice'])->name('invoice');
+    Route::get('invoices/{id}/{ids}', [\App\Http\Controllers\TransaksiController::class, 'invoice'])->name('invoices');
 
 });
 

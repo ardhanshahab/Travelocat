@@ -8,6 +8,7 @@ use App\Models\AlamatPengiriman;
 use App\Models\Order;
 use App\Models\Produk;
 use App\Models\notif;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\PaymentAndShippingStatus;
 
@@ -247,4 +248,31 @@ class TransaksiController extends Controller
     {
         //
     }
+
+    public function invoice($id, $ids)
+    {
+        $itemuser = User::findOrFail($ids);
+        // return $itemuser;
+
+        // Decode the URL-encoded invoice ID
+        $invoiceId = urldecode($id);
+        // return response()->json($invoiceId);
+        // Retrieve the user's address
+        $alamat = AlamatPengiriman::where('user_id', $itemuser->id)->first();
+
+        // Retrieve the cart details for the user with the decoded invoice ID
+        $itemcart = Cart::with('detail.produk')
+                        ->where('user_id', $itemuser->id)
+                        ->where('no_invoice', $invoiceId)
+                        ->first();
+
+        // Check if the cart was found and return data
+        if (!$itemcart) {
+            return response()->json(['message' => 'Invoice not found'], 404);
+        }
+        $data = $itemcart;
+        // Return the data and render the view
+        return view('invoice.invoice', compact('data', 'itemuser', 'alamat'));
+    }
+
 }
