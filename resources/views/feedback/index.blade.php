@@ -2,6 +2,25 @@
 @section('content')
 
 <div class="container" style="width: auto; height: auto;">
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="col-md-12 d-flex justify-content-between">
+                        <h5 class="modal-title" id="exampleModalLabel">Pengumuman</h5>
+                        {{-- <button type="button" class="btn-no" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                    </div>
+                </div>
+                <div class="modal-body" style="overflow-y: scroll; height:300px">
+                    <h6>Terimakasih Telah berbelanja di Travelocat! Kami mohon untuk meminta waktu anda sebentar untuk survey E-commerce Travelocat</h6> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom" id="btn-yes" data-dismiss="modal">Ya</button>
+                    <button type="button" class="btn btn-custom" id="btn-no" data-dismiss="modal">Tidak</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -30,7 +49,7 @@
                             <textarea class="form-control" id="komentar" name="komentar" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="rating">Rating:</label>
+                            <label for="rating">Rating (1-5):</label>
                             <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
                         </div>
                         <h4>Pelayanan</h4>
@@ -330,4 +349,13 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#loadingModal').modal('show'); // Tampilkan modal sebelum memulai pemanggilan Ajax
+        $('#btn-no').click(function(){
+                window.location.href = '/';
+            });
+    });
+</script>
 @endsection

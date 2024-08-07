@@ -113,7 +113,7 @@ class TransaksiController extends Controller
                     'read' => false,
                     'tipe' => '2',
                 ]);
-                return redirect()->route('transaksi.index')->with('success', 'Order successfully saved');
+                return redirect()->route('feedback.index')->with('success', 'Segera Lakukan Pembayaran untuk pesanan anda');
             } else {
                 return back()->with('error', 'The shipping address has not been filled in');
             }

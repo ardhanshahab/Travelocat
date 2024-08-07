@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('slideshow',\App\Http\Controllers\SlideshowController::class);
     Route::resource('promo',\App\Http\Controllers\ProdukPromoController::class);
     Route::get('loadprodukasync/{id}',[\App\Http\Controllers\ProdukController::class,'loadasync']);
+
 });
 
 Route::group(['middleware' => 'auth'], function() {
@@ -61,6 +62,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/sudah/{id}', [\App\Http\Controllers\HomepageController::class, 'sudahsampai'])->name('sampai.store');
     Route::get('invoice/{id}', [\App\Http\Controllers\CartController::class, 'invoice'])->name('invoice');
     Route::get('invoices/{id}/{ids}', [\App\Http\Controllers\TransaksiController::class, 'invoice'])->name('invoices');
+    Route::get('buktitransfer/{id}/{ids}', [\App\Http\Controllers\buktitransferController::class, 'index'])->name('buktitransfer.index');
+    Route::post('/buktitransfer/store', [\App\Http\Controllers\buktitransferController::class, 'store'])->name('buktitransfer.store');
 
 });
 

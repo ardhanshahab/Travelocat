@@ -79,6 +79,7 @@
           </div>
         </div>
         <div class="card-footer">
+          <a href="{{ route('buktitransfer.index', [$itemorder->cart->no_invoice, $itemorder->cart->user_id]) }}" class="btn btn-sm btn-success">Bukti Transfer</a>
           <a href="{{ route('invoices', [$itemorder->cart->no_invoice, $itemorder->cart->user_id]) }}" class="btn btn-sm btn-primary">Lihat Invoice</a>
           <a href="{{ route('transaksi.index') }}" class="btn btn-sm btn-danger">Tutup</a>
         </div>

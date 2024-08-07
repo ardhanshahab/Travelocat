@@ -203,8 +203,9 @@
                   </td>
                   <td>
                     <select name="status_pengiriman" id="status_pengiriman" class="form-control">
-                      <option value="sudah" {{ $itemorder->cart->status_pengiriman == 'sudah' ? 'selected':'' }}>Sudah</option>
-                      <option value="belum" {{ $itemorder->cart->status_pengiriman == 'belum' ? 'selected':'' }}>Belum</option>
+                      <option value="Diproses" {{ $itemorder->cart->status_pengiriman == 'Diproses' ? 'selected':'' }}>Diproses</option>
+                      <option value="Dikirim" {{ $itemorder->cart->status_pengiriman == 'Dikirim' ? 'selected':'' }}>Dikirim</option>
+                      <option value="Diterima" {{ $itemorder->cart->status_pengiriman == 'Diterima' ? 'selected':'' }}>Diterima</option>
                     </select>
                   </td>
                 </tr>
